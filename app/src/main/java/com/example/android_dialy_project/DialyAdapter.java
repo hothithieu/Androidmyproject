@@ -1,5 +1,6 @@
 package com.example.android_dialy_project;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DialyAdapter  extends RecyclerView.Adapter<DialyAdapter.DailyViewHolder> {
@@ -21,7 +23,6 @@ public class DialyAdapter  extends RecyclerView.Adapter<DialyAdapter.DailyViewHo
 
     public interface OnItemClicked {
         void onClickItemDelete(int position);
-
     }
 
     @NonNull

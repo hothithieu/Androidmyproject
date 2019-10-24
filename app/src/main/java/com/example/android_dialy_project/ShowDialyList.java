@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -24,9 +25,14 @@ public class ShowDialyList extends AppCompatActivity implements DialyAdapter.OnI
     RecyclerView recyclerviewUser;
     AppDatabase db;
     DialyAdapter dialyAdapter;
+
     public static List<Dialy> Dialies = new ArrayList<Dialy>();
+    public static List<Dialy> listDialies = new ArrayList<Dialy>();
+    int index = -1;
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_dialy_list);
         db = Room.databaseBuilder(getApplicationContext(),
@@ -39,16 +45,31 @@ public class ShowDialyList extends AppCompatActivity implements DialyAdapter.OnI
         dialyAdapter.setOnClick(new DialyAdapter.OnItemClicked() {
             @Override
             public void onClickItemDelete(int position) {
+                getIndex(position);
                 deleteDialy(position);
             }
         });
-
         final Button btn_ShowDialiesList = (Button) findViewById(R.id.btnCombakHome);
         btn_ShowDialiesList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ShowDialyList.this, MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        final TextView showDitail = (TextView) findViewById(R.id.tvTitle);
+        showDitail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (index >= 0){
+                    Intent intent = new Intent(ShowDialyList.this, dialyDetail.class);
+                    String Title = listDialies.get(index).Title;
+                    String Content = listDialies.get(index).Content;
+                    intent.putExtra("Title", Title);
+                    intent.putExtra("Content", Content);
+                    startActivity(intent);
+                }
 
             }
         });
@@ -60,11 +81,14 @@ public class ShowDialyList extends AppCompatActivity implements DialyAdapter.OnI
         getandDisplayTask();
     }
 
-
+    public int getIndex(int position){
+        return index = position;
+    }
     public void getandDisplayTask() {
         new AsyncTask<Void, Void, List<Dialy>>() {
             @Override
             protected List<Dialy> doInBackground(Void... voids) {
+                listDialies = db.dialyDao().getAll();
                 return db.dialyDao().getAll();
             }
 

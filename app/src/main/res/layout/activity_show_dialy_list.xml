@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/listback"
     tools:context=".ShowDialyList">
 
     <Button
@@ -18,7 +19,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_id"
         android:layout_width="match_parent"
-        android:background="@drawable/backouk"
         android:layout_height="match_parent"
 
         />

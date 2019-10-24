@@ -11,27 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:background="@drawable/backouk"
+        android:background="@drawable/welcom1"
         android:orientation="vertical">
 
-        <!--        minmap -> new -> imageasset -> chon anh-->
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="My Dialy"
-            android:textColor="#fff"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="50sp"
             android:textStyle="bold" />
 
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
 
     </LinearLayout>
 
